@@ -1,12 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './screens/Home/index';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Header from './components/header';
+import Footer from './components/footer';
+
+const indexRoutes = [{ path: '/', name: "App", component: App }]
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div>
+      <BrowserRouter>
+        <Switch>
+          {
+            indexRoutes.map((prop, key) => {
+              return (
+                <Route path={prop.path} component={prop.component} key={key} />
+              )
+            })
+          }
+        </Switch>
+      </BrowserRouter>
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
